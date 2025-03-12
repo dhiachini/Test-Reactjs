@@ -1,0 +1,76 @@
+/* general styles for dropdowns */
+.dropdown-wrapper {
+  width: 250px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.dropdown-header {
+  background-color: #1976d2;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 5px 5px 0 0;
+}
+
+/* Search field container*/
+.search-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 3px;
+}
+
+.search-icon {
+  color: gray;
+  margin-right: 8px;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+}
+
+/* Options list */
+.orbit-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  max-height: 150px;
+  overflow-y: auto;
+  border-radius: 5px;
+}
+
+.orbit-item {
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s ease-in-out;
+}
+
+.orbit-item:hover {
+  background-color: #f1f1f1;
+}
+
+.selected {
+  font-weight: bold;
+  background-color: #e3f2fd;
+}
+
+.check-icon {
+  color: #1976d2;
+  margin-right: 8px;
+}
