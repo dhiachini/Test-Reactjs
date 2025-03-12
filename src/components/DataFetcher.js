@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import BarChartComponent from "./BarChart";
+import TableView from "./tables/TaleView";
 import { transformData, sortDataByAverageDiameter } from "./utils";
 import OrbitDropdown from "./OrbitDropdown";
+import "./../styles.css";
 
-const API_KEY = "fxeNqgDX6gOySiy2I5u4hQI5ju0FT15qan2rrU1K"; //Generated Api Key from nasa Apis
+const API_KEY = "fxeNqgDX6gOySiy2I5u4hQI5ju0FT15qan2rrU1K"; // Generated API Key from NASA APIs
 
 const DataFetcher = () => {
   const [data, setData] = useState([]);
@@ -11,6 +13,7 @@ const DataFetcher = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedOrbit, setSelectedOrbit] = useState("all");
+  const [viewType, setViewType] = useState("chart"); // chart or table
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,18 +56,33 @@ const DataFetcher = () => {
   if (error) return <div className="text-red-500">Error: {error.message}</div>;
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-gray-100 shadow-md rounded-lg relative">
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-4">
-        <OrbitDropdown
-          selectedOrbit={selectedOrbit}
-          setSelectedOrbit={setSelectedOrbit}
-        />
-      </div>
+    <div className="max-w-4xl mx-auto p-6 bg-gray-100 shadow-md rounded-lg">
 
-      <div className="mt-20">
-        <BarChartComponent data={filteredData} />
-      </div>
-    </div>
+  <div className="dropdown-container">
+
+    <OrbitDropdown
+      selectedOrbit={selectedOrbit}
+      setSelectedOrbit={setSelectedOrbit}
+    />
+
+    <select
+      value={viewType}
+      onChange={(e) => setViewType(e.target.value)}
+      className="view-dropdown"
+    >
+      <option value="chart">Chart View</option>
+      <option value="table">Table View</option>
+    </select>
+  </div>
+
+  {/* Conditional rendering based on viewType */}
+  {viewType === "chart" ? (
+    <BarChartComponent data={filteredData} />
+  ) : (
+    <TableView data={filteredData} />
+  )}
+</div>
+
   );
 };
 
